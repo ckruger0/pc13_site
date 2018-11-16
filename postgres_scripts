@@ -1,0 +1,18 @@
+ \c farmtraining
+
+CREATE TABLE users(
+ phone_number VARCHAR (50) PRIMARY KEY,
+ name VARCHAR (50) NOT NULL,
+ state VARCHAR (50) NOT NULL
+);
+
+CREATE TABLE test_scores(
+ phone_number VARCHAR (50),
+ lesson VARCHAR (50) NOT NULL,
+ date VARCHAR (50) NOT NULL,
+ score INT  NOT NULL,
+ PRIMARY KEY (phone_number, lesson, date)
+);
+
+INSERT INTO users (phone_number, name, state) VALUES ('6507766642', 'hemanth', 'ca');
+INSERT INTO test_scores (phone_number, lesson, date, score) VALUES ('6507766642', 'Irrigation', '11082012 10:22:15', 3 );

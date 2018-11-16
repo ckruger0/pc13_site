@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Creative - Start Bootstrap Theme</title>
+    <title>Creative - Farmiversity Theme</title>
 
     <!-- Bootstrap core CSS -->
     <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -31,7 +31,7 @@
     <!-- Navigation -->
       <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Farmiversity</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -53,21 +53,55 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center">
-          <form>
-            <div class="form-group">
+             <form action = "user" method = "POST">
+
+                 <div class="form-group">
               <label for="InputName">Name</label>
-              <input type="text" class="form-control" id="InputName" aria-describedby="emailHelp" placeholder="enter name">
+              <input type="text" class="form-control" name="Name" aria-describedby="emailHelp" placeholder="enter name">
             </div>
             <div class="form-group">
               <label for="InputState">State</label>
-              <input type="text" class="form-control" id="InputState" placeholder="enter state">
+              <input type="text" class="form-control" name="State" placeholder="enter state">
             </div>
             <div class="form-group">
               <label for="InputPhone">Phone Number</label>
-              <input type="test" class="form-control" id="InputPhone" aria-describedby="emailHelp" placeholder="enter phone">
+              <input type="text" class="form-control" name="Phone" aria-describedby="emailHelp" placeholder="enter phone">
             </div>
-              <a class="btn btn-light btn-xl js-scroll-trigger" href="/user">Submit</a>
+     
+         <button class="btn btn-light btn-xl js-scroll-trigger" input type = "submit">Submit</button>
+      </form>
+          <!--
+          <form action="/user" method="POST">
+              
+            <p>Name <input type = "text" name = "Name" /></p>
+
+            
+            <p>Name <input type = "text" name = "Name" /></p>
+         <p>Physics <input type = "text" name = "Physics" /></p>
+         <p>Chemistry <input type = "text" name = "chemistry" /></p>
+         <p>Maths <input type ="text" name = "Mathematics" /></p>
+            
+            <div class="form-group">
+              <label for="InputName">Name</label>
+              <input type="text" class="form-control" name="Name" aria-describedby="emailHelp" placeholder="enter name">
+            </div>
+            <div class="form-group">
+              <label for="InputState">State</label>
+              <input type="text" class="form-control" name="State" placeholder="enter state">
+            </div>
+            <div class="form-group">
+              <label for="InputPhone">Phone Number</label>
+              <input type="text" class="form-control" name="Phone" aria-describedby="emailHelp" placeholder="enter phone">
+            </div>
+           
+             
+         <p><input type = "submit" value = "submit" /></p>
+            
+              <button class="btn btn-light btn-xl js-scroll-trigger" input type = "submit">Submit</button>
+              
+                
           </form>
+          !-->
           </div>
         </div>
       </div>
