@@ -8,8 +8,8 @@ import datetime
 app.config['DEBUG'] = True
 import psycopg2
 	
-conn = psycopg2.connect("dbname=farmtraining user=HemanthKondapalli password=Jrs92@")
-cur = conn.cursor()
+#conn = psycopg2.connect("dbname=farmtraining user=HemanthKondapalli password=Jrs92@")
+#cur = conn.cursor()
 
 
 
@@ -175,10 +175,11 @@ def quizresults():
 				score += 1
 	
 	print "phone number is {}".format(phonenumber)
-	cur.execute('INSERT INTO test_scores (phone_number, lesson, date, score)  VALUES (\'{}\', \'{}\', \'{}\', \'{}\');'.format(phonenumber, lesson, str(datetime.datetime.now()), score))
-	conn.commit()
+	#cur.execute('INSERT INTO test_scores (phone_number, lesson, date, score)  VALUES (\'{}\', \'{}\', \'{}\', \'{}\');'.format(phonenumber, lesson, str(datetime.datetime.now()), score))
+	#conn.commit()
 
-	return render_template("user.html")
+	quiz_score = str(score)
+	return render_template("quizresults.html", value = quiz_score)
 
 
 @app.route('/user',methods = ['POST'])
