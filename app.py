@@ -8,8 +8,8 @@ import datetime
 app.config['DEBUG'] = True
 import psycopg2
 	
-#conn = psycopg2.connect("dbname=farmtraining user=HemanthKondapalli password=Jrs92@")
-#cur = conn.cursor()
+conn = psycopg2.connect("dbname=farmtraining user=HemanthKondapalli password=Jrs92@")
+cur = conn.cursor()
 
 
 
@@ -148,7 +148,7 @@ def quizresults():
 		
 	elif results.keys()[0][0] == 'i':
 		lesson = "Irrigation"
-		irrigation_solution = {"i_q_2": "4", "i_q_3": "4", "i_q_1": "1", "i_q_4": "4", "i_q_5": "2"}
+		irrigation_solution = {"i_q_2": "1", "i_q_3": "1", "i_q_1": "1", "i_q_4": "1", "i_q_5": "1"}
 		for key in results.keys():
 			if results[key] == irrigation_solution[key]:
 				score += 1
@@ -175,14 +175,15 @@ def quizresults():
 				score += 1
 	
 	print "phone number is {}".format(phonenumber)
-	#cur.execute('INSERT INTO test_scores (phone_number, lesson, date, score)  VALUES (\'{}\', \'{}\', \'{}\', \'{}\');'.format(phonenumber, lesson, str(datetime.datetime.now()), score))
-	#conn.commit()
+	
+	cur.execute('INSERT INTO test_scores (phone_number, lesson, date, score)  VALUES (\'{}\', \'{}\', \'{}\', \'{}\');'.format(phonenumber, lesson, str(datetime.datetime.now()), score))
+	conn.commit()
 
 	quiz_score = str(score)
 	return render_template("quizresults.html", value = quiz_score)
 
 
-@app.route('/user',methods = ['POST'])
+@app.route('/user',methods = ['POST', 'GET'])
 def user():
 	'''
 	#Insert User
@@ -195,10 +196,29 @@ def user():
 	cur.execute('SELECT lesson, max(score) FROM test_scores WHERE phone_number = \'{}\' GROUP BY phone_number, lesson, date;'.format(request.form["Phone"]))
 	results = cur.fetchall()
 	'''
-	global phonenumber
-	phonenumber = request.form["Phone"]
-	print "phone number in user is {}".format(phonenumber)
-	return render_template('user.html')
+
+	
+	scores = {"irrigation": "failed", "financialliteracy": ""}
+
+	if request.method == 'POST':
+		global phonenumber
+		phonenumber = request.form["Phone"]
+		print "phone number in user is {}".format(phonenumber)
+	else:
+		cur.execute('SELECT lesson, max(score) FROM test_scores WHERE phone_number = \'{}\' GROUP BY phone_number, lesson;'.format(phonenumber))
+		results = cur.fetchall()
+
+	
+		for result in results:
+			if result[0] == "Irrigation" and result[1] > 3:
+				scores["irrigation"] = "passed"
+			if result[0] == "Financial Literacy" and result[1] > 3:
+				scores["financialliteracy"] = "passed"
+
+		
+		print results 
+		print scores
+	return render_template('user.html', value=scores)
 
 
 if __name__ == '__main__':
