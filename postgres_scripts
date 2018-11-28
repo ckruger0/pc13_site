@@ -16,3 +16,8 @@ CREATE TABLE test_scores(
 
 INSERT INTO users (phone_number, name, state) VALUES ('6507766642', 'hemanth', 'ca');
 INSERT INTO test_scores (phone_number, lesson, date, score) VALUES ('6507766642', 'Irrigation', '11082012 10:22:15', 3 );
+
+INSERT INTO test_scores (phone_number, lesson, date, score) VALUES ('6507766642', 'Pesticides', '11082012 11:22:15', 4 );
+
+
+SELECT lesson, max(score) FROM test_scores WHERE phone_number = '6507766642' GROUP BY phone_number, lesson, date;

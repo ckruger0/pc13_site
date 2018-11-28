@@ -8,7 +8,7 @@ import datetime
 app.config['DEBUG'] = True
 import psycopg2
 	
-conn = psycopg2.connect("dbname=farmtraining user=HemanthKondapalli password=Jrs92@")
+conn = psycopg2.connect("dbname=farmtraining user=HemanthKondapalli password=<Please ask group for password>")
 cur = conn.cursor()
 
 
